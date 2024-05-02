@@ -1,5 +1,5 @@
 import './App.css'
-import { Box, FormControl, FormHelperText, FormLabel, Input, Button, Center } from '@chakra-ui/react'
+import { Box, FormControl, FormLabel, Input, Button, Center, Checkbox } from '@chakra-ui/react'
 
 function App() {
     return (
@@ -14,15 +14,23 @@ function App() {
                     <FormControl isRequired mb='30px'>
                         <Input type='text' name='last_name' placeholder='Enter Last Name' />
                     </FormControl>
-                    
+
                     <FormControl isRequired mb='30px'>
                         <Input type='password' name='pass' placeholder='Password' />
                     </FormControl>
-                    
+
                     <FormControl isRequired mb='30px'>
-                    <Input type='password' name='re-pass' placeholder='Repeat Password' />
-                    </FormControl> 
-                    
+                        <Input type='password' name='re-pass' placeholder='Repeat Password' />
+                    </FormControl>
+
+                    <FormControl display="flex" alignItems="center" mb="40px">
+                        <Checkbox
+                            name='Sport'
+                            size="lg"
+                        />
+                        <FormLabel mb="0" ml="0"></FormLabel>
+                    </FormControl>
+
                     <Button colorScheme='teal' type='submit' mt={4}>
                         Next
                     </Button>
