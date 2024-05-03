@@ -1,4 +1,4 @@
-import { Box, Button, Flex, HStack, Heading, Spacer, Text } from "@chakra-ui/react";
+import {  Button, Flex, HStack, Heading, Spacer, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
