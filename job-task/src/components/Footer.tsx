@@ -3,11 +3,12 @@ import { Flex, HStack, Text } from "@chakra-ui/react";
 export default function Footer() {
   return (
     <Flex
+      bg="black"
       as="footer"
       align="center"
       justify="center"
       direction="column"
-      bg="gray"
+      color="rgb(245, 207, 26)"
       position="fixed"
       bottom="0"
       left="0"
@@ -15,7 +16,7 @@ export default function Footer() {
       p="10px"
     >
       <HStack spacing="20px">
-        <Text>Ⓒ 2018-2023, BLACKDEEP TECHNOLOGIES PLTD</Text>
+       
         <Text>Happy Coding</Text>
       </HStack>
     </Flex>

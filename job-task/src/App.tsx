@@ -1,4 +1,4 @@
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { Box, ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Profile from './pages/Profile/Profile';
@@ -24,10 +24,13 @@ function App() {
 
             <Router>
                 <Header />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/profile" element={<Profile />} />
-                </Routes>
+                <Box bg="rgb(158, 158, 158)" h="100vh">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/profile" element={<Profile />} />
+                    </Routes>
+                </Box>
+
                 <Footer />
             </Router>
 
