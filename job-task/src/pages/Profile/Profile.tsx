@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Image } from '@chakra-ui/react';
+import { Image, Box, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 // Define interface for user data
@@ -15,7 +15,6 @@ export default function Profile() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        
         const savedUserData = localStorage.getItem('userData');
         if (!savedUserData) {
             navigate('/');
@@ -26,16 +25,14 @@ export default function Profile() {
     }, []);
 
     return (
-        <div>
-            <h1>Profile</h1>
+        <Box textAlign="center">
             {userData && (
-                <div>
-                    <p>First Name: {userData.first_name}</p>
-                    <p>Last Name: {userData.last_name}</p>
-                   
-                    <Image src={userData.avatar} alt="User Avatar" />
-                </div>
+                <Box p={100}>
+                    <Image  src={userData.avatar} alt="User Avatar" borderRadius="full" boxSize="150px" mx="auto" />
+                    <Text mt={4} fontWeight="bold" color='rgba(255, 255, 255, 0.7)' fontSize='2xl'>{userData.first_name} {userData.last_name},</Text>
+                    <Text mt={4} fontWeight="bold" color='rgba(255, 255, 255, 0.7)' fontSize='xl'> you have been successfully logged in</Text>
+                </Box>
             )}
-        </div>
+        </Box>
     );
 }

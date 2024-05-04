@@ -21,10 +21,30 @@ const theme = extendTheme({
 function App() {
     return (
         <ChakraProvider theme={theme}>
-
             <Router>
                 <Header />
-                <Box bg="rgb(158, 158, 158)" h="100vh">
+                <Box
+                    h="100vh"
+                    position="relative"
+                    overflow="hidden"
+                >
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        style={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            zIndex: -1,
+                            filter: 'blur(6px)', // Adjust the blur strength as needed
+                            opacity: 1.3, // Adjust the opacity level as needed
+                        }}
+                    >
+                        <source src="/comp-back.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/profile" element={<Profile />} />
@@ -33,7 +53,6 @@ function App() {
 
                 <Footer />
             </Router>
-
         </ChakraProvider>
     );
 }

@@ -114,30 +114,36 @@ function Home(): JSX.Element {
     return (
         <Center>
 
-            <Box maxWidth={480} py={20}>
+            <Box
+                maxWidth={['100%', '60%', '480px', '480px']}
+                width="100%"
+                px={4}
+                pt={[6, 6, 10, 20]} // Reduced padding top on small devices
+                pb={6}
+            >
                 <form onSubmit={handleSubmit} style={{ display: step === 1 ? 'block' : 'none' }}>
                     <FormControl isRequired mb={8} isInvalid={!!errors.first_name}>
-                        <FormLabel fontSize='xl' textAlign='center'>Register account</FormLabel>
-                        <Input type='text' name='first_name' placeholder='Enter First Name' onChange={handleChange} />
+                    <FormLabel fontSize='2xl' textAlign='center' color="white">Register account</FormLabel>
+                        <Input type='text' name='first_name' placeholder='Enter First Name' onChange={handleChange}  color='rgba(255, 255, 255, 0.7)' _placeholder={{ color: 'rgba(255, 255, 255, 0.3)' }}/>
                         <FormErrorMessage>{errors.first_name}</FormErrorMessage>
                     </FormControl>
 
                     <FormControl isRequired mb={8} isInvalid={!!errors.last_name}>
-                        <Input type='text' name='last_name' placeholder='Enter Last Name' onChange={handleChange} />
+                        <Input type='text' name='last_name' placeholder='Enter Last Name' onChange={handleChange} color='rgba(255, 255, 255, 0.7)' _placeholder={{ color: 'rgba(255, 255, 255, 0.3)' }}/>
                         <FormErrorMessage>{errors.last_name}</FormErrorMessage>
                     </FormControl>
 
                     <FormControl isRequired mb={8} isInvalid={!!errors.password}>
-                        <Input type='password' name='password' placeholder='Password' onChange={handleChange} />
+                        <Input type='password' name='password' placeholder='Password' onChange={handleChange} color='rgba(255, 255, 255, 0.7)' _placeholder={{ color: 'rgba(255, 255, 255, 0.3)' }}/>
                         <FormErrorMessage>{errors.password}</FormErrorMessage>
                     </FormControl>
 
                     <FormControl isRequired mb={8} isInvalid={!!errors.confirm_password}>
-                        <Input type='password' name='confirm_password' placeholder='Confirm Password' onChange={handleChange} />
+                        <Input type='password' name='confirm_password' placeholder='Confirm Password' onChange={handleChange} color='rgba(255, 255, 255, 0.7)' _placeholder={{ color: 'rgba(255, 255, 255, 0.3)' }}/>
                         <FormErrorMessage>{errors.confirm_password}</FormErrorMessage>
                     </FormControl>
 
-                    <FormLabel fontSize={'xl'} textAlign={'center'}>Interests</FormLabel>
+                    <FormLabel fontSize='xl' textAlign='center' color="white">Interests</FormLabel>
                     <FormControl display="flex" alignItems="center" mb="40px">
                         <Checkbox
                             key={1}
@@ -149,7 +155,7 @@ function Home(): JSX.Element {
                             isChecked={formData.interests.includes('Sports')}
                             isDisabled={formData.interests.length >= 2 && !formData.interests.includes('Sports')}
                         />
-                        <FormLabel mb="0" ml="2">Sports</FormLabel>
+                        <FormLabel mb="0" ml="2" color="white">Sports</FormLabel>
                         <Checkbox
                             key={2}
                             id={`field-music-2`}
@@ -161,7 +167,7 @@ function Home(): JSX.Element {
                             isChecked={formData.interests.includes('Music')}
                             isDisabled={formData.interests.length >= 2 && !formData.interests.includes('Music')}
                         />
-                        <FormLabel mb="0" ml="2">Music</FormLabel>
+                        <FormLabel mb="0" ml="2" color="white">Music</FormLabel>
                         <Checkbox
                             key={3}
                             id={`field-dancing-3`}
@@ -173,7 +179,7 @@ function Home(): JSX.Element {
                             isChecked={formData.interests.includes('Dancing')}
                             isDisabled={formData.interests.length >= 2 && !formData.interests.includes('Dancing')}
                         />
-                        <FormLabel mb="0" ml="2">Dancing</FormLabel>
+                        <FormLabel mb="0" ml="2" color="white">Dancing</FormLabel>
                         <Checkbox
                             key={4}
                             id={`field-games-4`}
@@ -185,17 +191,22 @@ function Home(): JSX.Element {
                             isChecked={formData.interests.includes('Games')}
                             isDisabled={formData.interests.length >= 2 && !formData.interests.includes('Games')}
                         />
-                        <FormLabel mb="0" ml="2">Games</FormLabel>
+                        <FormLabel mb="0" ml="2" color="white">Games</FormLabel>
                     </FormControl>
                     <FormErrorMessage>{interestError}</FormErrorMessage>
-                    <Button colorScheme='teal' type='button' onClick={handleNext} mt={4}>
+                    <Button colorScheme='rgb(245, 207, 26)'
+                        bg='rgb(245, 207, 26)'
+                        type='button'
+                        onClick={handleNext}
+                        mt={4}>
                         Next
                     </Button>
+
                 </form>
 
                 <form onSubmit={handleSubmit} style={{ display: step === 2 ? 'block' : 'none' }}>
                     <FormControl isRequired mb={8}>
-                        <FormLabel fontSize='xl' textAlign='center'>Avatar URL</FormLabel>
+                        <FormLabel fontSize='xl' textAlign='center' color='rgba(255, 255, 255, 0.8)'>Avatar URL</FormLabel>
                         <Input type='url' name='avatar' placeholder='Enter Image URL' onChange={handleChange} />
                     </FormControl>
 
