@@ -81,7 +81,7 @@ function Home(): JSX.Element {
             <form onSubmit={handleSubmit(onSubmit)}  >
                 {showFirstBox && (
                     <Box
-                        maxWidth={['100%', '60%', '480px', '480px']}
+                        maxWidth={['340px', '90%', '480px', '480px']}
                         width="100%"
                         px={4}
                         pt={[6, 6, 10, 20]}
@@ -133,50 +133,51 @@ function Home(): JSX.Element {
                             <Checkbox
                                 key={1}
                                 id={`field-ports-1`}
+                                ml={['-1', '1', '2', '2']}
                                 name='interests'
                                 value='Sports'
-                                size="lg"
+                                size={['md', 'lg', 'lg', "lg"]}
                                 onChange={() => handleCheckboxChange('Sports')}
                                 isChecked={selectedInterests.includes('Sports')}
                                 isDisabled={selectedInterests.length === 2 && !selectedInterests.includes('Sports')}
                             />
-                            <FormLabel mb="0" ml="2" color="white">Sports</FormLabel>
+                            <FormLabel mb="0" ml={['1', '1', '2', '2']} color="white">Sports</FormLabel>
                             <Checkbox
                                 key={2}
                                 id={`field-music-2`}
-                                ml="2"
+                                ml={['1', '1', '2', '2']}
                                 name='interests'
                                 value='Music'
-                                size="lg"
+                                size={['md', 'lg', 'lg', "lg"]}
                                 onChange={() => handleCheckboxChange('Music')}
                                 isChecked={selectedInterests.includes('Music')}
                                 isDisabled={selectedInterests.length === 2 && !selectedInterests.includes('Music')}
                             />
-                            <FormLabel mb="0" ml="2" color="white">Music</FormLabel>
+                            <FormLabel mb="0" ml={['1', '1', '2', '2']} color="white">Music</FormLabel>
                             <Checkbox
                                 key={3}
                                 id={`field-dancing-3`}
-                                ml="2"
+                                ml={['1', '1', '2', '2']}
                                 name='interests'
                                 value='Dancing'
-                                size="lg"
+                                size={['md', 'lg', 'lg', "lg"]}
                                 onChange={() => handleCheckboxChange('Dancing')}
                                 isChecked={selectedInterests.includes('Dancing')}
                                 isDisabled={selectedInterests.length === 2 && !selectedInterests.includes('Dancing')}
                             />
-                            <FormLabel mb="0" ml="2" color="white">Dancing</FormLabel>
+                            <FormLabel mb="0" ml={['1', '1', '2', '2']} color="white" >Dancing</FormLabel>
                             <Checkbox
                                 key={4}
                                 id={`field-games-4`}
-                                ml="2"
+                                ml={['1', '1', '2', '2']}
                                 name='interests'
                                 value='Games'
-                                size="lg"
+                                size={['md', 'lg', 'lg', "lg"]}
                                 onChange={() => handleCheckboxChange('Games')}
                                 isChecked={selectedInterests.includes('Games')}
                                 isDisabled={selectedInterests.length === 2 && !selectedInterests.includes('Games')}
                             />
-                            <FormLabel mb="0" ml="2" color="white">Games</FormLabel>
+                            <FormLabel mb="0" ml={['1', '1', '2', '2']} color="white">Games</FormLabel>
                         </FormControl>
                         <FormErrorMessage></FormErrorMessage>
                         <Button colorScheme='rgb(245, 207, 26)'
@@ -203,7 +204,7 @@ function Home(): JSX.Element {
                         <Button colorScheme='teal' type='button' mr={2} mt={4} onClick={handleBack}>
                             Back
                         </Button>
-                        <Button colorScheme='teal' type='submit' mt={4}>
+                        <Button data-testid="submitButton" colorScheme='teal' type='submit' mt={4}>
                             Submit
                         </Button>
                     </Box>
