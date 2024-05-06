@@ -1,7 +1,7 @@
 import { Box, FormControl, FormLabel, Button, Center, Input, FormErrorMessage, Checkbox } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 type FormFields = {
     first_name: string;
@@ -13,11 +13,15 @@ type FormFields = {
 }
 
 function Home(): JSX.Element {
-    const { register, handleSubmit, formState: { errors } } = useForm<FormFields>();
+    const { register, handleSubmit, formState: { errors }, watch } = useForm<FormFields>();
     const [showAvatarForm, setShowAvatarForm] = useState<boolean>(false);
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
-    const [showFirstBox, setShowFirstBox] = useState<boolean>(true); 
+    const [showFirstBox, setShowFirstBox] = useState<boolean>(true);
     const navigate = useNavigate();
+
+    // Watch the password and confirm_password fields
+    const password = watch("password", "");
+    // const confirmPassword = watch("confirm_password", "");
 
     useEffect(() => {
         localStorage.removeItem('userData');
@@ -29,16 +33,16 @@ function Home(): JSX.Element {
         console.log(errors);
         console.log(data);
 
-        
+
         localStorage.setItem('userData', JSON.stringify(data));
         navigate('/profile');
     }
 
     const handleNext = () => {
-        handleSubmit((data) => {
+        handleSubmit(() => {
             if (Object.keys(errors).length === 0) {
                 setShowAvatarForm(true);
-                setShowFirstBox(false); 
+                setShowFirstBox(false);
             }
         })();
     }
@@ -58,6 +62,18 @@ function Home(): JSX.Element {
         }
     }
 
+    const validatePassword = (value: string) => {
+        // Check if the password contains any empty spaces
+        return !/\s/.test(value) || "Password should not contain empty spaces";
+    }
+
+    const validateAvatarURL = (value: string) => {
+        // Regular expression for URL validation
+        const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+        return urlRegex.test(value) || "Enter a valid URL";
+    }
+
+
     return (
         <Center>
 
@@ -68,7 +84,7 @@ function Home(): JSX.Element {
                         maxWidth={['100%', '60%', '480px', '480px']}
                         width="100%"
                         px={4}
-                        pt={[6, 6, 10, 20]} 
+                        pt={[6, 6, 10, 20]}
                         pb={6}
 
                     >
@@ -92,19 +108,19 @@ function Home(): JSX.Element {
                         </FormControl>
 
                         <FormControl mb={8} isInvalid={!!errors.password}>
-
                             <Input {...register("password", {
                                 required: "Password is required",
-                                minLength: { value: 4, message: "Password should be at least 4 characters long" }
+                                minLength: { value: 6, message: "Password should be at least 6 characters long" },
+                                validate: validatePassword // Custom validation function
                             })} type='password' name='password' placeholder='Enter Password' color='rgba(255, 255, 255, 0.7)' />
                             <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
                         </FormControl>
 
                         <FormControl mb={8} isInvalid={!!errors.confirm_password}>
-
                             <Input {...register("confirm_password", {
                                 required: "Confirm Password is required",
-                                minLength: { value: 4, message: "Confirm Password should be at least 4 characters long" }
+                                minLength: { value: 6, message: "Confirm Password should be at least 6 characters long" },
+                                validate: value => value === password || "The passwords do not match"
                             })} type='password' name='confirm_password' placeholder='Confirm Password' color='rgba(255, 255, 255, 0.7)' />
                             <FormErrorMessage>{errors.confirm_password?.message}</FormErrorMessage>
                         </FormControl>
@@ -176,11 +192,10 @@ function Home(): JSX.Element {
                 {showAvatarForm && (
                     <Box mt={150}>
 
-                        <FormControl mb={8} isInvalid={!!errors.confirm_password}>
-
+                        <FormControl mb={8} isInvalid={!!errors.avatar}>
                             <Input {...register("avatar", {
                                 required: "URL is required",
-                                minLength: { value: 4, message: "Valid URL is required" }
+                                validate: validateAvatarURL // Custom validation function for URL
                             })} type='text' name='avatar' placeholder='Image URL' color='rgba(255, 255, 255, 0.7)' />
                             <FormErrorMessage>{errors.avatar?.message}</FormErrorMessage>
                         </FormControl>
