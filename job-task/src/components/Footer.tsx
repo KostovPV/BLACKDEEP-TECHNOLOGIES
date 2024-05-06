@@ -15,7 +15,7 @@ export default function Footer() {
       width="100%"
       p="10px"
     >
-      <HStack spacing="20px">
+      <HStack id="footer" spacing="20px">
        
         <Text>Happy Coding</Text>
       </HStack>

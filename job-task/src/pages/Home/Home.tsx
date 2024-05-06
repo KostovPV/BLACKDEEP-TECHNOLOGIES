@@ -191,7 +191,7 @@ function Home(): JSX.Element {
                 }
                 {showAvatarForm && (
                     <Box mt={150}>
-
+                        <FormLabel fontSize='m' textAlign='center' color="white">Upload image URL</FormLabel>
                         <FormControl mb={8} isInvalid={!!errors.avatar}>
                             <Input {...register("avatar", {
                                 required: "URL is required",
