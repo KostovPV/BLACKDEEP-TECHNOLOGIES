@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import { Image, Box, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
-// Define interface for user data
+
 interface UserData {
     first_name: string;
     last_name: string;
-    avatar: string; // Add avatar property
-    // Add other properties if needed
+    avatar: string; 
+    
 }
 
 export default function Profile() {
-    const [userData, setUserData] = useState<UserData | null>(null); // Initialize as null
+    const [userData, setUserData] = useState<UserData | null>(null); 
     const navigate = useNavigate();
 
     useEffect(() => {
