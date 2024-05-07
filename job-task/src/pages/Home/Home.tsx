@@ -73,6 +73,12 @@ function Home(): JSX.Element {
         return urlRegex.test(value) || "Enter a valid URL";
     }
 
+    const validateName = (value: string) => {
+        // Regular expression for name validation (no spaces allowed)
+        const nameRegex = /^[A-Za-z]+$/;
+        return nameRegex.test(value) || "Only letters are allowed, no spaces";
+    }
+
 
     return (
         <Center>
@@ -93,25 +99,29 @@ function Home(): JSX.Element {
 
                             <Input {...register("first_name", {
                                 required: "First name is required",
-                                minLength: { value: 4, message: "First name should be at least 4 characters long" }
+                                minLength: { value: 4, message: "First name should be at least 4 characters long" },
+                                validate: validateName // Custom validation function for name
                             })} type='text' name='first_name' placeholder='Enter First Name' color='rgba(255, 255, 255, 0.7)' />
                             <FormErrorMessage>{errors.first_name?.message}</FormErrorMessage>
+
                         </FormControl>
 
                         <FormControl mb={8} isInvalid={!!errors.last_name}>
-
                             <Input {...register("last_name", {
                                 required: "Last name is required",
-                                minLength: { value: 4, message: "Last name should be at least 4 characters long" }
+                                minLength: { value: 4, message: "Last name should be at least 4 characters long" },
+                                validate: validateName // Custom validation function for name
                             })} type='text' name='last_name' placeholder='Enter Last Name' color='rgba(255, 255, 255, 0.7)' />
                             <FormErrorMessage>{errors.last_name?.message}</FormErrorMessage>
+
+
                         </FormControl>
 
                         <FormControl mb={8} isInvalid={!!errors.password}>
                             <Input {...register("password", {
                                 required: "Password is required",
                                 minLength: { value: 6, message: "Password should be at least 6 characters long" },
-                                validate: validatePassword // Custom validation function
+                                validate: validatePassword 
                             })} type='password' name='password' placeholder='Enter Password' color='rgba(255, 255, 255, 0.7)' />
                             <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
                         </FormControl>
@@ -196,7 +206,7 @@ function Home(): JSX.Element {
                         <FormControl mb={8} isInvalid={!!errors.avatar}>
                             <Input {...register("avatar", {
                                 required: "URL is required",
-                                validate: validateAvatarURL // Custom validation function for URL
+                                validate: validateAvatarURL 
                             })} type='text' name='avatar' placeholder='Image URL' color='rgba(255, 255, 255, 0.7)' />
                             <FormErrorMessage>{errors.avatar?.message}</FormErrorMessage>
                         </FormControl>
